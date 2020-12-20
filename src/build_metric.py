@@ -11,9 +11,6 @@ def dataParser(filename):
                 print(f'Column names are {", ".join(row)}')
             elif row[10] == 'Summer' and int(row[9]) >= 1980:
                 index = int((int(row[9]) - 1980) / 4)
-    #            print(f'{row[10]} - {row[9]}')
-    #            print(f'\t{row[1]} competed in {row[8]} in {row[12]}.')
-    #            print(index)
                 rest[index].append(row[9] + " " + row[1])
             line_count += 1
         printer2d(rest)
@@ -33,10 +30,11 @@ def graphViewer(data):
     values = [len(data[0]), len(data[1]), len(data[2]), len(data[3]), len(data[4]), len(data[5]), len(data[6]), len(data[7]), len(data[8]), len(data[9])]
     ax.scatter(years, values)
     ax.set_title('Olympic games contesters from 1980 to now.')
-    ax.set_xlabel('year')
-    ax.set_ylabel('number of pélos')
+    ax.set_xlabel('Year')
+    ax.set_ylabel('Number of Olympians')
     plt.show()
 
-filename = '../dataset/athlete_events.csv'
-data = dataParser(filename)
-graphViewer(data)
+if __name__ == "__main__":
+    filename = '../dataset/athlete_events.csv'
+    data = dataParser(filename)
+    graphViewer(data)
